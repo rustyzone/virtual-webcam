@@ -1,5 +1,5 @@
 {
-  "name": "Virtual Webcam",
+  "name": "Virtual Webcam MV3",
   "version": "1.0.0",
   "minimum_chrome_version": "10.0",
   "icons": {
@@ -7,25 +7,31 @@
     "48": "icon-48.png",
     "128": "icon-128.png"
   },
-  "description": "Virtual webcam.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "48": "icon-48.png",
+      "128": "icon-128.png"
+    }
+  },
+  "description": "Virtual webcam - Google Meet, select virtual webcam in settings",
   "content_scripts": [
     {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "js/inject.js"
-      ],
+      "matches": ["<all_urls>"],
+      "js": ["js/inject.js"],
       "run_at": "document_start",
-      "all_frames": true
+      "all_frames": true,
+      "type": "module"
     }
   ],
-  "permissions": [
-    "tabs",
-    "<all_urls>"
-  ],
-  "manifest_version": 2,
+  "permissions": ["tabs"],
+  "host_permissions": ["<all_urls>"],
+  "manifest_version": 3,
   "web_accessible_resources": [
-    "js/*"
+    {
+      "resources": ["js/*"],
+      "matches": ["<all_urls>"]
+    }
   ]
 }
